@@ -33,4 +33,18 @@ public class LogicTest {
         assertThat(exception.getMessage()).isEqualTo(message);
     }
 
+    @Test
+    public void whenMoveThenOccupiedException()
+            throws FigureNotFoundException, OccupiedCellException, ImpossibleMoveException {
+        Logic logic = new Logic();
+        logic.add(new BishopBlack(Cell.C1));
+        logic.add(new BishopBlack(Cell.E3));
+        String message = "Cell is occupied.";
+        OccupiedCellException exception
+                = assertThrows(OccupiedCellException.class, () -> {
+            logic.move(Cell.C1, Cell.H6);
+        });
+        assertThat(exception.getMessage()).isEqualTo(message);
+    }
+
 }
